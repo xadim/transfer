@@ -49,8 +49,9 @@ const LiveExchangeComponent = () => {
 
     return (
       <form className="block bg-white shadow-lg p-8 rounded-xl">
-        <h3 className="text-base mb-4 text-center">Send Money</h3>
-
+        <h1 className="text-2xl mb-4">Send Money</h1>
+        <p>The 6x cheaper international account.</p>
+        <hr className="my-6 border-b-1 border-blueGray-300" />
         <div>
           <label
             htmlFor="price"
@@ -71,7 +72,7 @@ const LiveExchangeComponent = () => {
               name="amount"
               value={rate.amount}
               id="amount"
-              className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-2 border-b-2 appearance-none focus:outline-none focus:border-indigo-600 border-gray-200 font-sans focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+              className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border border-b-2 appearance-none focus:outline-none border-gray-200 font-sans block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
               placeholder="0.00"
               onChange={currencyChange}
             />
@@ -79,7 +80,7 @@ const LiveExchangeComponent = () => {
               <select
                 id="currencyCode"
                 name="currencyCode"
-                className="uppercase focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 bg-transparent text-gray-500 sm:text-sm rounded-md border-2"
+                className="uppercase h-full py-0 pl-2 pr-7 bg-transparent text-gray-500 sm:text-sm rounded-md border border-l-0"
                 onChange={currencyChange}
               >
                 {rates.map((rate) => (
@@ -101,14 +102,14 @@ const LiveExchangeComponent = () => {
               type="text"
               name="serviceFees"
               id="serviceFees"
-              className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-2 border-b-0 appearance-none focus:outline-none focus:border-indigo-600 border-gray-200 font-sans focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-t-md"
+              className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border border-b-0 appearance-none focus:outline-none border-gray-200 font-sans block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-t-md"
               placeholder="0.00"
               disabled
             />
             <div className="absolute inset-y-0 right-0 flex items-center">
               <input
                 name="currencyCodeName"
-                className="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 bg-transparent text-gray-500 sm:text-sm rounded-t-md text-right"
+                className="h-full py-0 pl-2 pr-7 bg-transparent text-gray-500 sm:text-sm rounded-t-md text-right"
                 placeholder="Service Fees"
                 disabled
               />
@@ -128,14 +129,14 @@ const LiveExchangeComponent = () => {
               type="text"
               value={exchange.exRate.toFixed(2)}
               id="exRate"
-              className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-2 border-b-2 appearance-none focus:outline-none focus:border-indigo-600 border-gray-200 font-sans focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-b-md"
+              className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border border-b-2 appearance-none focus:outline-none border-gray-200 font-sans block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-b-md"
               placeholder="0.00"
               disabled
               readOnly
             />
             <div className="absolute inset-y-0 right-0 flex items-center">
               <input
-                className="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 bg-transparent text-gray-500 sm:text-sm rounded-b-md text-right"
+                className="h-full py-0 pl-2 pr-7 bg-transparent text-gray-500 sm:text-sm rounded-b-md text-right"
                 placeholder="Exchange Rate"
                 disabled
                 readOnly
@@ -166,14 +167,14 @@ const LiveExchangeComponent = () => {
               value={exchange.recipientMoney}
               name="recipientMoney"
               id="recipientMoney"
-              className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-2 border-b-2 appearance-none focus:outline-none focus:border-indigo-600 border-gray-200 font-sans focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+              className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border border-b-2 appearance-none focus:outline-none border-gray-200 font-sans block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
               placeholder="0.00"
               readOnly
             />
             <div className="absolute inset-y-0 right-0 flex items-center">
               <select
                 name="recipientCurrency"
-                className="uppercase focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 bg-transparent text-gray-500 sm:text-sm rounded-md border-2"
+                className="uppercase h-full py-0 pl-2 pr-7 bg-transparent text-gray-500 sm:text-sm rounded-md border"
                 onChange={currencyChange}
               >
                 {rates.map((rate) => (
@@ -185,14 +186,19 @@ const LiveExchangeComponent = () => {
             </div>
           </div>
         </div>
-
-        <button className="rounded-xl bg-blue-600 mt-8 block text-center text-white px-4 py-2 text-sm">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `Pay now (${exchange.recipientCurrencySign} ${exchange.recipientMoney})`,
-            }}
-          />
-        </button>
+        <hr className="my-6 border-b-1 border-blueGray-300" />
+        <div className="flex items-end justify-end">
+          <button className="rounded text-gray-400 text-center px-4 py-2 text-xl">
+            Cancel
+          </button>
+          <button className="rounded bg-blue-600 ml-4 text-center text-white px-4 py-2 text-xl">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `Pay now (${exchange.recipientCurrencySign} ${exchange.recipientMoney})`,
+              }}
+            />
+          </button>
+        </div>
       </form>
     );
 };
